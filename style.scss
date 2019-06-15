@@ -1,0 +1,148 @@
+@charset "UTF-8";
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+$shadow: 0 0 10px rgba(0,0,0,0.5);
+$main-color: #000;
+$bg-color: #fff;
+
+body{
+  font-family: 'Titillium Web', sans-serif;
+}
+.page{
+  background: #fff;
+}
+.page_gradient{
+  display: block;
+  background: linear-gradient(to top, #F0E68C, #E0FFFF);
+  height: 100vh;
+}
+.wrap{
+  width: 70%;
+  display: flex;
+  margin: 0 auto;
+}
+.header{
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  .wrap{
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+  }
+  .logo{
+    font-size: 25px;
+  }
+  .wrap-for-link{
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+    .link-enter{
+      display: flex;
+      flex-wrap: nowrap;
+      .link-enter__img{
+        margin-right: 10px;
+      }
+      .link-enter__text{
+        color: $main-color;
+      }
+    }
+  }
+}
+.main-nav{
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  .main-nav__link{
+    color: $main-color;
+    &:hover{
+      opacity: 0.7;
+    }
+  }
+}
+.header_fixed{
+  background: $bg-color;
+  position: fixed;
+  height: (100vh / 10);
+  z-index: 100;
+  box-shadow: $shadow;
+  top:0;
+  .main-nav{
+    position: relative;
+    right: 120px;
+    .main-nav__link{
+      color: $main-color;
+    }
+  }
+  .nav-button{
+    display: none;
+  }
+}
+.header_top{
+  height: (100vh / 7);
+  .wrap{
+    position: relative;
+    .main-nav{
+      position: absolute;
+      bottom: 10px;
+      right: 100px;
+      opacity: 0;
+    }
+    .nav-button{
+      position: absolute;
+      right: 0;
+      bottom:5px;
+    }
+  }
+}
+.nav-button{
+  width: 30px;
+  height: 30px;
+  background-color: $bg-color;
+  border-radius: 50%;
+  box-shadow: $shadow;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .nav-button__center-line, .nav-button__center-line:before, .nav-button__center-line.nav-button__center-line:after{
+    display: block;
+    height: 2px;
+    width: 18px;
+    background-color: $main-color;
+  }
+  .nav-button__center-line:before{
+    transition: all 0.5s;
+    content: '';
+    position: relative;
+    bottom: 8px;
+  }
+  .nav-button__center-line:after{
+    transition: all 0.5s;
+    content: '';
+    position: relative;
+    top: 6px;//значение отличается от bottom у :before из-за разницы в положении на 2px (высота элемента)
+  }
+}
+.nav-button_open{
+  position: relative;
+  .nav-button__center-line{
+    background: transparent;
+  }
+  .nav-button__center-line:before{
+    transform: rotate(45deg);
+    position: absolute;
+    top: 50%;
+  }
+  .nav-button__center-line:after{
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 50%;
+  }
+}
+

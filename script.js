@@ -22,5 +22,11 @@ $(document).ready(function(){
             hideMenu.fadeTo('slow',0);
         }
     });
+
+    $(".scroll-button").click(function() {
+        $('html,body').animate({
+                scrollTop: $("#scroll").offset().top},
+            'slow');
+    });
 });
 

@@ -211,7 +211,26 @@ body{
     }
   }
 }
-
+.scroll-button{
+  text-align: center;
+  color: $main-color;
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  font-style: italic;
+  animation: jump 2s linear infinite;
+  .scroll-button__img{
+    margin: 10px 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+@keyframes jump {
+  from {transform:  translate(0, 0);}
+  to { transform: translate(0,+15px);}
+}
 
 
 

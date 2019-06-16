@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     //отображение меню в header_top по нажатию на кнопку
     var navButton=$('.nav-button');//кнопка для скрытия/отображения меню в header на первой странице
-    var hideMenu=$('.main-nav');//меню, которое необходимо скрытвать и показывать
+    var hideMenu=$('.navigation');//меню, которое необходимо скрытвать и показывать
     navButton.click(function () {
         $(this).toggleClass("nav-button_open");
         if ($(this).hasClass('nav-button_open')){

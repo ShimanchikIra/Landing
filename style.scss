@@ -8,24 +8,29 @@
 $shadow: 0 0 10px rgba(0,0,0,0.5);
 $main-color: #000;
 $bg-color: #fff;
+$text-color: #949292;
+$title-color: #544444;
 
 body{
   font-family: 'Titillium Web', sans-serif;
 }
 .page{
-  background: #fff;
-}
-.page_gradient{
-  display: block;
-  background: linear-gradient(to top, #F0E68C, #E0FFFF);
-  height: 100vh;
+  background: $bg-color;
 }
 .wrap{
   width: 70%;
   display: flex;
   margin: 0 auto;
 }
-.header{
+.logo{
+  font-size: 25px;
+}
+.page_start{
+  background: linear-gradient(to top, #F0E68C, #E0FFFF);
+  height: 100vh;
+
+}
+.header{//общая стилизация header
   width: 100%;
   text-transform: uppercase;
   font-weight: bold;
@@ -33,10 +38,17 @@ body{
   .wrap{
     align-items: center;
     justify-content: space-between;
-    height: inherit;
   }
-  .logo{
-    font-size: 25px;
+  .navigation{
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    .navigation__link{
+      color: $main-color;
+      &:hover{
+        opacity: 0.7;
+      }
+    }
   }
   .wrap-for-link{
     display: flex;
@@ -51,56 +63,13 @@ body{
       .link-enter__text{
         color: $main-color;
       }
+      &:hover{
+        opacity: 0.7;
+      }
     }
   }
 }
-.main-nav{
-  width: 35%;
-  display: flex;
-  justify-content: space-between;
-  .main-nav__link{
-    color: $main-color;
-    &:hover{
-      opacity: 0.7;
-    }
-  }
-}
-.header_fixed{
-  background: $bg-color;
-  position: fixed;
-  height: (100vh / 10);
-  z-index: 100;
-  box-shadow: $shadow;
-  top:0;
-  .main-nav{
-    position: relative;
-    right: 120px;
-    .main-nav__link{
-      color: $main-color;
-    }
-  }
-  .nav-button{
-    display: none;
-  }
-}
-.header_top{
-  height: (100vh / 7);
-  .wrap{
-    position: relative;
-    .main-nav{
-      position: absolute;
-      bottom: 10px;
-      right: 100px;
-      opacity: 0;
-    }
-    .nav-button{
-      position: absolute;
-      right: 0;
-      bottom:5px;
-    }
-  }
-}
-.nav-button{
+.nav-button{//кнопка для отображания/скрытия меню в header
   width: 30px;
   height: 30px;
   background-color: $bg-color;
@@ -128,8 +97,11 @@ body{
     position: relative;
     top: 6px;//значение отличается от bottom у :before из-за разницы в положении на 2px (высота элемента)
   }
+  &:hover{
+    transform: scale(0.9);
+  }
 }
-.nav-button_open{
+.nav-button_open{//состояние нажатой кнопки
   position: relative;
   .nav-button__center-line{
     background: transparent;
@@ -145,4 +117,72 @@ body{
     top: 50%;
   }
 }
+.header_top{//стилизация header в изначальном положении
+  .wrap{
+    position: relative;
+    .logo{
+      padding: 45px 0;
+    }
+    .navigation{
+      position: absolute;
+      bottom: 10px;
+      right: 100px;
+      opacity: 0;
+    }
+    .nav-button{
+      position: absolute;
+      right: 0;
+      bottom:5px;
+    }
+  }
+}
+
+.header_fixed{//изменения в header,которые происзодят, когда он становится фиксированным
+  background: $bg-color;
+  position: fixed;
+  z-index: 100;
+  box-shadow: $shadow;
+  top:0;
+  .navigation{
+    position: relative;
+    right: 120px;
+  }
+  .logo{
+    padding: 25px 0;
+  }
+  .nav-button{
+    display: none;
+  }
+}
+
+//данный миксин для блока .title
+//значяения параметров по умолчанию выставлены для заголовков разделов, которых на сайте минимум 3
+//для изменения внешнего вида блока title можно вызвать этот миксин с другми значениями параметров
+@mixin font-title ($color-title: $title-color, $color-text: $main-color, $weight-title: normal, $weight-text: bold, $size-title: 35px, $size-text: 15px){
+  .title__main-title{
+    color: $color-title;
+    font-weight: $weight-title;
+    font-size: $size-title ;
+    text-transform: capitalize;
+  }
+  .title__text{
+    color: $color-text;
+    font-weight: $weight-text;
+    font-size: $size-text ;
+  }
+}
+
+.title{//блок для часто повторяющихся заголовоков разделов (можно использовать и для для других похожих зоголовков, переопределяя некоторые свойства)
+   width: 100%;
+   text-align: center;
+   line-height: 1.5;
+   @include font-title;
+}
+.page_start{//заголовок на первой странице немного отличается от остальных
+  .title_start {
+    @include font-title($main-color, $main-color, normal, bold, 50px, 20px);
+  }
+}
+
+
 

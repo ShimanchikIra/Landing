@@ -8,11 +8,11 @@ body {
   font-family: 'Titillium Web', sans-serif; }
 
 .page {
-  background: #fff; }
+  background: #fff;
+  padding: 70px 0 0 0; }
 
 .wrap {
   width: 70%;
-  display: flex;
   margin: 0 auto; }
 
 .logo {
@@ -20,7 +20,8 @@ body {
 
 .page_start {
   background: linear-gradient(to top, #F0E68C, #E0FFFF);
-  height: 100vh; }
+  height: 100vh;
+  padding: 0; }
 
 .header {
   width: 100%;
@@ -28,6 +29,7 @@ body {
   font-weight: bold;
   font-size: 14px; }
   .header .wrap {
+    display: flex;
     align-items: center;
     justify-content: space-between; }
   .header .navigation {
@@ -112,7 +114,8 @@ body {
   position: fixed;
   z-index: 100;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  top: 0; }
+  top: 0;
+  transition: all 1s; }
   .header_fixed .navigation {
     position: relative;
     right: 120px; }
@@ -123,12 +126,14 @@ body {
 
 .title {
   width: 100%;
+  height: inherit;
   text-align: center;
-  line-height: 1.5; }
+  line-height: 1.5;
+  padding: 20px 0; }
   .title .title__main-title {
     color: #544444;
     font-weight: normal;
-    font-size: 35px;
+    font-size: 30px;
     text-transform: capitalize; }
   .title .title__text {
     color: #000;
@@ -144,5 +149,23 @@ body {
   color: #000;
   font-weight: bold;
   font-size: 20px; }
+
+.benefits {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+  .benefits .box-benefit {
+    width: 20%;
+    padding: 60px 0; }
+    .benefits .box-benefit .box-benefit__img {
+      max-width: 100%;
+      box-sizing: border-box; }
+    .benefits .box-benefit .box-benefit__title {
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 20px 0; }
+    .benefits .box-benefit .box-benefit__text {
+      color: #949292;
+      line-height: 1; }
 
 /*# sourceMappingURL=style.css.map */

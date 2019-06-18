@@ -8,8 +8,7 @@ body {
   font-family: 'Titillium Web', sans-serif; }
 
 .page {
-  background: #fff;
-  padding: 70px 0 0 0; }
+  background: #fff; }
 
 .wrap {
   width: 70%;
@@ -23,7 +22,9 @@ body {
   height: 100vh;
   padding: 0; }
   .page_start .wrap {
-    align-items: flex-end; }
+    padding-top: 150px;
+    display: flex;
+    flex-wrap: wrap; }
 
 .header {
   width: 100%;
@@ -133,8 +134,7 @@ body {
   width: 100%;
   height: inherit;
   text-align: center;
-  line-height: 1.5;
-  padding: 20px 0; }
+  line-height: 1.5; }
   .title .title__main-title {
     color: #544444;
     font-weight: normal;
@@ -145,15 +145,17 @@ body {
     font-weight: bold;
     font-size: 15px; }
 
-.page_start .title_start .title__main-title {
-  color: #000;
-  font-weight: normal;
-  font-size: 50px;
-  text-transform: capitalize; }
-.page_start .title_start .title__text {
-  color: #000;
-  font-weight: bold;
-  font-size: 20px; }
+.page_start .title_start {
+  padding-bottom: 100px; }
+  .page_start .title_start .title__main-title {
+    color: #000;
+    font-weight: normal;
+    font-size: 50px;
+    text-transform: capitalize; }
+  .page_start .title_start .title__text {
+    color: #000;
+    font-weight: bold;
+    font-size: 20px; }
 
 .benefits {
   width: 100%;
@@ -194,5 +196,49 @@ body {
     transform: translate(0, 0); }
   to {
     transform: translate(0, 15px); } }
+.box-img {
+  width: 60%;
+  position: relative; }
+  .box-img .box-img__img {
+    max-width: 80%;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+  .box-img .box-img__img:last-child {
+    position: absolute;
+    right: 0;
+    bottom: -30px; }
+
+.box-text {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px; }
+  .box-text .box-text__text {
+    color: #949292;
+    margin-bottom: 30px;
+    line-height: 1;
+    width: 70%; }
+  .box-text .box-text__sub-text {
+    text-transform: capitalize;
+    font-weight: bold;
+    width: 30%;
+    line-height: 1;
+    text-align: center;
+    margin-top: 10px; }
+
+.button {
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px 20px; }
+  .button:hover {
+    opacity: 0.6; }
 
 /*# sourceMappingURL=style.css.map */

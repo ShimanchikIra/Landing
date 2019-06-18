@@ -14,9 +14,13 @@ $border-r: 3px;
 body{
   font-family: 'Titillium Web', sans-serif;
 }
+@mixin border{//миксин для часто повторяюшихся границ блоков блоков (в том числе и кнопок)
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: $shadow;
+}
 .page{
   background: $bg-color;
-  padding: 70px 0 0 0;
 }
 .wrap{
   width: 70%;
@@ -30,7 +34,11 @@ body{
   height: 100vh;
   padding: 0;
   .wrap{
-    align-items: flex-end;
+    padding-top: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    //
+    //align-items: flex-end;
   }
 }
 .header{//общая стилизация header
@@ -184,11 +192,12 @@ body{
    height: inherit;
    text-align: center;
    line-height: 1.5;
-  padding: 20px 0;
+  //padding: 20px 0;
    @include font-title;
 }
 .page_start{//заголовок на первой странице немного отличается от остальных
   .title_start {
+    padding-bottom: 100px;
     @include font-title($main-color, $main-color, normal, bold, 50px, 20px);
   }
 }
@@ -236,7 +245,51 @@ body{
   from {transform:  translate(0, 0);}
   to { transform: translate(0,+15px);}
 }
-
-
-
-
+.box-img{
+  width: 60%;
+  position: relative;
+  .box-img__img{
+    max-width: 80%;
+    box-sizing: border-box;
+    box-shadow: $shadow;
+  }
+  .box-img__img:last-child{
+    position: absolute;
+    right: 0;
+    bottom: -30px;
+  }
+}
+.box-text{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  .box-text__text{
+    color: $text-color;
+    margin-bottom: 30px;
+    line-height: 1;
+    width: 70%;
+  }
+  .box-text__sub-text{
+    text-transform: capitalize;
+    font-weight: bold;
+    width: 30%;
+    line-height: 1;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+.button{//общая стилизация для всех кнопок
+  text-align: center;
+  background-color: $bg-color;
+  color: $main-color;
+  text-transform: uppercase;
+  font-weight: bold;
+  @include border;
+  padding: 10px 20px;
+  &:hover{
+    opacity: 0.6;
+  }
+}

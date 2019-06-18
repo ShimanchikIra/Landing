@@ -22,6 +22,8 @@ body {
   background: linear-gradient(to top, #F0E68C, #E0FFFF);
   height: 100vh;
   padding: 0; }
+  .page_start .wrap {
+    align-items: flex-end; }
 
 .header {
   width: 100%;
@@ -39,7 +41,7 @@ body {
     .header .navigation .navigation__link {
       color: #000; }
       .header .navigation .navigation__link:hover {
-        opacity: 0.7; }
+        opacity: 0.5; }
   .header .wrap-for-link {
     display: flex;
     width: 20%;
@@ -95,19 +97,22 @@ body {
     position: absolute;
     top: 50%; }
 
-.header_top .wrap {
-  position: relative; }
-  .header_top .wrap .logo {
-    padding: 45px 0; }
-  .header_top .wrap .navigation {
-    position: absolute;
-    bottom: 10px;
-    right: 100px;
-    opacity: 0; }
-  .header_top .wrap .nav-button {
-    position: absolute;
-    right: 0;
-    bottom: 5px; }
+.header_top {
+  position: absolute;
+  top: 0; }
+  .header_top .wrap {
+    position: relative; }
+    .header_top .wrap .logo {
+      padding: 45px 0; }
+    .header_top .wrap .navigation {
+      position: absolute;
+      bottom: 10px;
+      right: 100px;
+      opacity: 0; }
+    .header_top .wrap .nav-button {
+      position: absolute;
+      right: 0;
+      bottom: 5px; }
 
 .header_fixed {
   background: #fff;
@@ -177,7 +182,8 @@ body {
   bottom: 0;
   left: 50%;
   font-style: italic;
-  animation: jump 2s linear infinite; }
+  animation: jump 2s linear infinite;
+  z-index: 5; }
   .scroll-button .scroll-button__img {
     margin: 10px 0;
     max-width: 100%;

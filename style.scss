@@ -10,7 +10,7 @@ $main-color: #000;
 $bg-color: #fff;
 $text-color: #949292;
 $title-color: #544444;
-
+$border-r: 3px;
 body{
   font-family: 'Titillium Web', sans-serif;
 }
@@ -28,7 +28,10 @@ body{
 .page_start{
   background: linear-gradient(to top, #F0E68C, #E0FFFF);
   height: 100vh;
- padding: 0;
+  padding: 0;
+  .wrap{
+    align-items: flex-end;
+  }
 }
 .header{//общая стилизация header
   width: 100%;
@@ -47,7 +50,7 @@ body{
     .navigation__link{
       color: $main-color;
       &:hover{
-        opacity: 0.7;
+        opacity: 0.5;
       }
     }
   }
@@ -119,6 +122,8 @@ body{
   }
 }
 .header_top{//стилизация header в изначальном положении
+  position: absolute;
+  top: 0;
   .wrap{
     position: relative;
     .logo{
@@ -198,7 +203,6 @@ body{
     .box-benefit__img{
       max-width: 100%;
       box-sizing: border-box;
-
     }
     .box-benefit__title{
       font-weight: bold;
@@ -221,6 +225,7 @@ body{
   left: 50%;
   font-style: italic;
   animation: jump 2s linear infinite;
+  z-index: 5;
   .scroll-button__img{
     margin: 10px 0;
     max-width: 100%;
@@ -231,6 +236,7 @@ body{
   from {transform:  translate(0, 0);}
   to { transform: translate(0,+15px);}
 }
+
 
 
 

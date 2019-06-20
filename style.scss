@@ -11,6 +11,7 @@ $bg-color: #fff;
 $text-color: #949292;
 $title-color: #544444;
 $border-r: 3px;
+$height-vertical-slider: 280px;
 body{
   font-family: 'Titillium Web', sans-serif;
 }
@@ -293,3 +294,60 @@ body{
     opacity: 0.6;
   }
 }
+.vertical-slider{
+  padding: 50px 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  .switch-vertical-slider{
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    .switch-vertical-slider__item{
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: $shadow;
+      background-color: #eee;
+    }
+    .switch-vertical-slider__item.active{
+      width: 20px;
+      height: 20px;
+    }
+    .switch-vertical-slider__item:after {
+      overflow: hidden;
+      content: '';
+      width: 1px;
+      height: 100%;
+      border-left: 1px solid #eee;
+      position: absolute;
+      top: 0;
+      left: 50%;
+    }
+  }
+  .content-vertical-slider{
+    display: block;
+    float: right;
+    width: 95%;
+    height: $height-vertical-slider;
+    overflow: hidden !important;
+    position: relative;
+    .content-vertical-slider-item{
+      display: block;
+      position: absolute;
+      width: 90%;
+      height: 100%;
+      top: $height-vertical-slider;//изначально первый слайд скрыт (показывается сразу при загрузке скрипта)
+    }
+    .content-vertical-slider__img{
+      max-width: 100%;
+      box-sizing: border-box;
+      max-height: 100%;
+    }
+  }
+}
+

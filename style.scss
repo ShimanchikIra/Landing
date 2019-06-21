@@ -5,20 +5,9 @@
   list-style: none;
   text-decoration: none;
 }
-$shadow: 0 0 10px rgba(0,0,0,0.5);
-$main-color: #000;
-$bg-color: #fff;
-$text-color: #949292;
-$title-color: #544444;
-$border-r: 3px;
-$height-vertical-slider: 280px;
+@import "general";
 body{
   font-family: 'Titillium Web', sans-serif;
-}
-@mixin border{//миксин для часто повторяюшихся границ блоков блоков (в том числе и кнопок)
-  border: 1px solid #eee;
-  border-radius: 5px;
-  box-shadow: $shadow;
 }
 .page{
   background: $bg-color;
@@ -42,94 +31,7 @@ body{
     //align-items: flex-end;
   }
 }
-.header{//общая стилизация header
-  width: 100%;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 14px;
-  .wrap{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .navigation{
-    width: 35%;
-    display: flex;
-    justify-content: space-between;
-    .navigation__link{
-      color: $main-color;
-      &:hover{
-        opacity: 0.5;
-      }
-    }
-  }
-  .wrap-for-link{
-    display: flex;
-    width: 20%;
-    justify-content: space-between;
-    .link-enter{
-      display: flex;
-      flex-wrap: nowrap;
-      .link-enter__img{
-        margin-right: 10px;
-      }
-      .link-enter__text{
-        color: $main-color;
-      }
-      &:hover{
-        opacity: 0.7;
-      }
-    }
-  }
-}
-.nav-button{//кнопка для отображания/скрытия меню в header
-  width: 30px;
-  height: 30px;
-  background-color: $bg-color;
-  border-radius: 50%;
-  box-shadow: $shadow;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .nav-button__center-line, .nav-button__center-line:before, .nav-button__center-line.nav-button__center-line:after{
-    display: block;
-    height: 2px;
-    width: 18px;
-    background-color: $main-color;
-  }
-  .nav-button__center-line:before{
-    transition: all 0.5s;
-    content: '';
-    position: relative;
-    bottom: 8px;
-  }
-  .nav-button__center-line:after{
-    transition: all 0.5s;
-    content: '';
-    position: relative;
-    top: 6px;//значение отличается от bottom у :before из-за разницы в положении на 2px (высота элемента)
-  }
-  &:hover{
-    transform: scale(0.9);
-  }
-}
-.nav-button_open{//состояние нажатой кнопки
-  position: relative;
-  .nav-button__center-line{
-    background: transparent;
-  }
-  .nav-button__center-line:before{
-    transform: rotate(45deg);
-    position: absolute;
-    top: 50%;
-  }
-  .nav-button__center-line:after{
-    transform: rotate(-45deg);
-    position: absolute;
-    top: 50%;
-  }
-}
+
 .header_top{//стилизация header в изначальном положении
   position: absolute;
   top: 0;
@@ -171,22 +73,7 @@ body{
   }
 }
 
-//данный миксин для блока .title
-//значяения параметров по умолчанию выставлены для заголовков разделов, которых на сайте минимум 3
-//для изменения внешнего вида блока title можно вызвать этот миксин с другми значениями параметров
-@mixin font-title ($color-title: $title-color, $color-text: $main-color, $weight-title: normal, $weight-text: bold, $size-title: 30px, $size-text: 15px){
-  .title__main-title{
-    color: $color-title;
-    font-weight: $weight-title;
-    font-size: $size-title ;
-    text-transform: capitalize;
-  }
-  .title__text{
-    color: $color-text;
-    font-weight: $weight-text;
-    font-size: $size-text ;
-  }
-}
+
 
 .title{//блок для часто повторяющихся заголовоков разделов (можно использовать и для для других похожих зоголовков, переопределяя некоторые свойства)
    width: 100%;
@@ -205,23 +92,26 @@ body{
 
 .benefits{
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  .box-benefit{
-    width: 20%;
-    padding: 60px 0;
-    .box-benefit__img{
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-    .box-benefit__title{
-      font-weight: bold;
-      text-transform: uppercase;
-      padding: 20px 0;
-    }
-    .box-benefit__text{
-      color: $text-color;
-      line-height: 1;
+  .benefits-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .box-benefit{
+      width: 20%;
+      padding: 60px 0;
+      .box-benefit__img{
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .box-benefit__title{
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 20px 0;
+      }
+      .box-benefit__text{
+        color: $text-color;
+        line-height: 1;
+      }
     }
   }
 }
@@ -282,20 +172,8 @@ body{
     margin-top: 10px;
   }
 }
-.button{//общая стилизация для всех кнопок
-  text-align: center;
-  background-color: $bg-color;
-  color: $main-color;
-  text-transform: uppercase;
-  font-weight: bold;
-  @include border;
-  padding: 10px 20px;
-  &:hover{
-    opacity: 0.6;
-  }
-}
 .vertical-slider{
-  padding: 50px 0;
+  //padding: 50px 0;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -318,16 +196,16 @@ body{
       width: 20px;
       height: 20px;
     }
-    .switch-vertical-slider__item:after {
-      overflow: hidden;
-      content: '';
-      width: 1px;
-      height: 100%;
-      border-left: 1px solid #eee;
-      position: absolute;
-      top: 0;
-      left: 50%;
-    }
+    //.switch-vertical-slider__item:after {
+    //  overflow: hidden;
+    //  content: '';
+    //  width: 1px;
+    //  height: 100%;
+    //  border-left: 1px solid #eee;
+    //  position: absolute;
+    //  top: 0;
+    //  left: 50%;
+    //}
   }
   .content-vertical-slider{
     display: block;
@@ -349,5 +227,107 @@ body{
       max-height: 100%;
     }
   }
+}
+
+//.media-block{
+//  display: grid;
+//  grid-template-rows: 1fr 1fr;
+//  grid-template-columns: 1fr 2fr;
+//  grid-gap: 1vw;
+//  .some-block {
+//    height: 200px;
+//    @include border;
+//    display: flex;
+//    flex-direction: column;
+//    align-items: center;
+//    justify-content: center;
+//  }
+//    .some-block__text {
+//      margin-bottom: 10px;
+//      color: $text-color;
+//    }
+//    .video-block {
+//      @include border;
+//      grid-row: 1 / 3;
+//      grid-column: 2 / 3;
+//      //grid-row: 1 /  2;
+//      // height: 400px;
+//    }
+//  }
+
+
+.horizontal-slider {
+  //padding: 50px 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .switch-horizontal-slider {
+    width: 90%;
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+
+    .switch-horizontal-slider__item {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: $shadow;
+      background-color: #eee;
+      margin: 0 40px;
+      cursor: pointer;
+    }
+
+    .switch-horizontal-slider__item.active {
+      width: 20px;
+      height: 20px;
+    }
+
+    .switch-horizontal-slider__item:after {
+      overflow: hidden;
+      content: '';
+      width: 100%;
+      height: 1px;
+      border-top: 1px solid #eee;
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+  }
+    .switch-near {
+      width: 4%;
+      text-align: center;
+      font-size: 35px;
+      cursor: pointer;
+    }
+
+    .content-horizontal-slider {
+      width: 90%;
+      height: $height-vertical-slider;
+      overflow: hidden !important;
+      position: relative;
+      display: block;
+      @include border;
+
+      .content-horizontal-slider-item {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        height: 100%;
+        right: 100%; //в данном слайдере первый слайд показывается
+      }
+
+      .content-horizontal-slider__img {
+        max-width: 100%;
+        box-sizing: border-box;
+
+        // max-height: 100%;
+      }
+    }
 }
 

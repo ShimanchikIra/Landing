@@ -338,4 +338,47 @@ body {
       max-width: 100%;
       box-sizing: border-box; }
 
+.prices-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 25px 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+  .prices-container .price-box {
+    width: 32%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 350px; }
+    .prices-container .price-box .price-box__type {
+      text-transform: uppercase;
+      color: #949292;
+      font-size: 25px; }
+    .prices-container .price-box .amount {
+      text-align: center;
+      font-weight: bold;
+      font-size: 50px; }
+      .prices-container .price-box .amount .amount__currency, .prices-container .price-box .amount .amount__sub {
+        color: #949292;
+        font-size: 25px; }
+  .prices-container .price-comment {
+    text-align: center;
+    color: #949292; }
+    .prices-container .price-comment .price-comment__text {
+      margin-bottom: 10px; }
+    .prices-container .price-comment .price-comment__text_through {
+      text-decoration: line-through; }
+    .prices-container .price-comment .price-comment__text_underline {
+      text-decoration: underline; }
+  .prices-container .price-box_active {
+    border: none;
+    box-shadow: none;
+    transform: translate(1.1); }
+
 /*# sourceMappingURL=style.css.map */

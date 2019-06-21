@@ -330,4 +330,51 @@ body{
       }
     }
 }
-
+.prices-container{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 25px 10px;
+  @include border;
+  .price-box{
+    width: 32%;
+    @include border;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 350px;
+    .price-box__type{
+      text-transform: uppercase;
+      color: $text-color;
+      font-size: 25px;
+    }
+    .amount{
+      text-align: center;
+      font-weight: bold;
+      font-size: 50px;
+      .amount__currency, .amount__sub{
+        color: $text-color;
+        font-size: 25px;
+      }
+    }
+  }
+  .price-comment{
+    text-align: center;
+    color: $text-color;
+    .price-comment__text{
+      margin-bottom: 10px;
+    }
+    .price-comment__text_through{
+      text-decoration: line-through;
+    }
+    .price-comment__text_underline{
+      text-decoration: underline;
+    }
+  }
+  .price-box_active{
+    border: none;
+    box-shadow: none;
+    transform: translate(1.1);
+  }
+}

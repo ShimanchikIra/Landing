@@ -1,13 +1,30 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Titillium Web', sans-serif;
+}
+
 $shadow: 0 0 10px rgba(0,0,0,0.5);
 $main-color: #000;
 $bg-color: #fff;
 $text-color: #949292;
 $title-color: #544444;
-$border-r: 3px;
-$height-vertical-slider: 280px;
+$height-slider: 300px;
 
+.page{
+  background: $bg-color;
+}
+.wrap{
+  width: 70%;
+  margin: 0 auto;
+}
+.logo{
+  font-size: 25px;
+}
 //данный миксин для блока .title
-//значяения параметров по умолчанию выставлены для заголовков разделов, которых на сайте минимум 3
+//значяения параметров по-умолчанию выставлены для заголовков разделов, которых на сайте минимум 3
 //для изменения внешнего вида блока title можно вызвать этот миксин с другми значениями параметров
 @mixin font-title ($color-title: $title-color, $color-text: $main-color, $weight-title: normal, $weight-text: bold, $size-title: 30px, $size-text: 15px){
   .title__main-title{
@@ -27,7 +44,19 @@ $height-vertical-slider: 280px;
   border-radius: $border-radius;
   box-shadow: $shadow;
 }
-.header{//общая стилизация header
+@mixin text ($color: $text-color, $size: 16px){//миксин для типичных блоков с текстом
+  color: $color;
+  font-size: $size;
+  line-height: 1;
+}
+.title{//блок для часто повторяющихся заголовоков разделов (можно использовать и для для других похожих зоголовков, переопределяя некоторые свойства и передавая в миксин другие параментры)
+  width: 100%;
+  height: inherit;
+  text-align: center;
+  line-height: 1;
+  @include font-title;
+}
+.header{//общая стилизация header (в style будет переопределение некоторых свойств для header_top и header_fixed
   width: 100%;
   text-transform: uppercase;
   font-weight: bold;
@@ -37,11 +66,11 @@ $height-vertical-slider: 280px;
     align-items: center;
     justify-content: space-between;
   }
-  .navigation{
+  .nav{
     width: 35%;
     display: flex;
     justify-content: space-between;
-    .navigation__link{
+    .nav__link{
       color: $main-color;
       &:hover{
         opacity: 0.5;
@@ -68,24 +97,28 @@ $height-vertical-slider: 280px;
   }
 }
 
-.button{//общая стилизация для всех кнопок
+.button{//прямоугольные кнопки
   text-align: center;
   background-color: $bg-color;
   color: $main-color;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 16px;
   @include border;
   padding: 10px 20px;
   &:hover{
     opacity: 0.6;
   }
 }
+//.button_circle{
+//  @include border (50%);
+//
+//}
 .nav-button{//кнопка для отображания/скрытия меню в header
   width: 30px;
   height: 30px;
   background-color: $bg-color;
-  border-radius: 50%;
-  box-shadow: $shadow;
+  @include border(50%);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -108,11 +141,8 @@ $height-vertical-slider: 280px;
     position: relative;
     top: 6px;//значение отличается от bottom у :before из-за разницы в положении на 2px (высота элемента)
   }
-  //&:hover{
-  //  transform: scale(0.9);
-  //}
 }
-.nav-button_open{//состояние нажатой кнопки
+.nav-button_open{//состояние нажатой кнопки для отображения меню
   position: relative;
   .nav-button__center-line{
     background: transparent;
@@ -128,9 +158,3 @@ $height-vertical-slider: 280px;
     top: 50%;
   }
 }
-//.button_circle{
-//  width: 80px;
-//  height: 80px;
-//  @include border (50%);
-//  background: url("img/play.png") no-repeat 60% 50%;
-//}

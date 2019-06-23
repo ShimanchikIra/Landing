@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     //отображение меню в header_top по нажатию на кнопку
     let navButton = $('.nav-button');//кнопка для скрытия/отображения меню в header на первой странице
-    let hideMenu = $('.navigation');//меню, которое необходимо скрытвать и показывать
+    let hideMenu = $('.nav');//меню, которое необходимо скрытвать и показывать
     navButton.click(function () {
         $(this).toggleClass("nav-button_open");
         if ($(this).hasClass('nav-button_open')) {
@@ -257,4 +257,14 @@ function nextSlide() {
         setTimeout(startSlider2, 8000);
 
     });
+
+    //
+    let priceBox= $('.price-box');
+   priceBox.click(function () {
+        priceBox.removeClass('price-box_active');
+        $(this).addClass('price-box_active');
+    })
 });
+
+
+

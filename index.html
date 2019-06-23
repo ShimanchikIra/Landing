@@ -5,6 +5,9 @@
     <title>Landing</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="revealator/fm.revealator.jquery.min.css">
 </head>
 <body>
 <header class="header header_top">
@@ -12,13 +15,13 @@
         <div class="logo">
             <p class="logo__text">your logo</p>
         </div>
-        <nav class="navigation">
-            <a class="navigation__link" href="#">features</a>
-            <a class="navigation__link" href="#">reviews</a>
-            <a class="navigation__link" href="#">pricing</a>
-            <a class="navigation__link" href="#">demo</a>
-            <a class="navigation__link" href="#">contact</a>
-        </nav>
+        <div class="nav">
+            <a class="nav__link" href="#">features</a>
+            <a class="nav__link" href="#">reviews</a>
+            <a class="nav__link" href="#">pricing</a>
+            <a class="nav__link" href="#">demo</a>
+            <a class="nav__link" href="#">contact</a>
+        </div>
         <div class="wrap-for-link">
             <a href="#" class="link-enter"><img src="img/enter.png" alt="enter" class="link-enter__img"><p class="link-enter__text">join us</p></a>
             <a href="#" class="link-enter"><img src="img/key.png" alt="key" class="link-enter__img"><p class="link-enter__text">login</p></a>
@@ -34,7 +37,7 @@
             <p class="scroll-button__text">Scroll Down</p>
             <img src="img/scrollDown.png" alt="scrollDown" class="scroll-button__img">
         </a>
-        <div class="title title_start">
+        <div class="title">
             <h1 class="title__main-title">startup landing page for your product</h1>
             <p class="title__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
         </div>
@@ -50,10 +53,9 @@
         </div>
 </div>
 </section>
-
 <section class="page">
     <div class="wrap">
-        <article class="benefits">
+        <article class="benefits revealator-slideup revealator-duration9 revealator-once">
             <div class="title">
                 <h2 class="title__main-title">main benefits of the product</h2>
                 <p class="title__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
@@ -76,7 +78,7 @@
                 </div>
             </div>
         </article>
-        <div class="vertical-slider">
+        <div class="vertical-slider revealator-slideup revealator-duration9 revealator-once">
         <ul class="switch-vertical-slider">
             <li class="switch-vertical-slider__item"></li>
             <li class="switch-vertical-slider__item"></li>
@@ -85,14 +87,14 @@
         <ul class="content-vertical-slider">
             <li class="content-vertical-slider-item"><img src="img/photo1.jpg" alt="img1" class="content-vertical-slider__img"></li>
             <li class="content-vertical-slider-item"><img src="img/mainimg.jpg" alt="img2" class="content-vertical-slider__img"></li>
-            <li class="content-vertical-slider-item"><img src="img/photo1.jpg" alt="img3" class="content-vertical-slider__img"></li>
+            <li class="content-vertical-slider-item"><img src="img/timeline.PNG" alt="img3" class="content-vertical-slider__img"></li>
         </ul>
         </div>
     </div>
 </section>
 <section class="page">
     <div class="wrap">
-        <article class="review">
+        <article class="review revealator-slideup revealator-duration9 revealator-once">
             <div class="title">
                 <h2 class="title__main-title">reviews from our users</h2>
                 <p class="title__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
@@ -102,7 +104,7 @@
                 <ul class="content-horizontal-slider">
                     <li class="content-horizontal-slider-item"><img src="img/photo1.jpg" alt="img1" class="content-horizontal-slider__img"></li>
                     <li class="content-horizontal-slider-item"><img src="img/mainimg.jpg" alt="img2" class="content-horizontal-slider__img"></li>
-                    <li class="content-horizontal-slider-item"><img src="img/photo1.jpg" alt="img3" class="content-horizontal-slider__img"></li>
+                    <li class="content-horizontal-slider-item"><img src="img/timeline.PNG" alt="img3" class="content-horizontal-slider__img"></li>
                 </ul>
                 <div id="next" class="switch-near">&#8250;</div>
                 <ul class="switch-horizontal-slider">
@@ -112,13 +114,13 @@
                 </ul>
             </div>
         </article>
-        <article class="flexible">
+        <article class="flexible revealator-slideup revealator-duration9 revealator-once">
             <div class="title">
                 <h2 class="title__main-title">we provide flexible</h2>
                 <p class="title__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
             </div>
             <div class="prices-container">
-                <div class="price-box">
+                <div class="price-box price-box_active">
                     <p class="price-box__type">free</p>
                     <div class="amount"><sup class="amount__currency">$</sup>0<span class="amount__sub">/mo</span> </div>
                     <div class="price-comment">
@@ -136,7 +138,7 @@
                         <p class="price-comment__text price-comment__text_underline">24/7 support</p>
                         <p class="price-comment__text price-comment__text_underline">Single licence</p>
                     </div>
-                    <a href="#" class="button">JOIN FOR FREE</a>
+                    <p class="price-box__discount">5% off. Limited time offer</p>
                 </div>
                 <div class="price-box">
                     <p class="price-box__type">premium</p>
@@ -146,14 +148,17 @@
                         <p class="price-comment__text price-comment__text_underline">24/7 support</p>
                         <p class="price-comment__text price-comment__text_underline">Single licence</p>
                     </div>
-                    <a href="#" class="button">JOIN FOR FREE</a>
+                    <p class="price-box__discount">10% off. Limited time offer</p>
                 </div>
             </div>
         </article>
-
     </div>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script type="text/javascript" src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="revealator/jquery-1.11.3.min.js"></script>
+<script src="revealator/fm.revealator.jquery.min.js"></script>
 </body>
 </html>

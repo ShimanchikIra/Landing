@@ -1,37 +1,4 @@
-
-*{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-}
-@import "general";
-body{
-  font-family: 'Titillium Web', sans-serif;
-}
-.page{
-  background: $bg-color;
-}
-.wrap{
-  width: 70%;
-  margin: 0 auto;
-}
-.logo{
-  font-size: 25px;
-}
-.page_start{
-  background: linear-gradient(to top, #F0E68C, #E0FFFF);
-  height: 100vh;
-  padding: 0;
-  .wrap{
-    padding-top: 150px;
-    display: flex;
-    flex-wrap: wrap;
-    //
-    //align-items: flex-end;
-  }
-}
-
+@import "general";//подключение scss файла, к котором хранятся переменные, миксины и общая стилизация блоков, которые повторяются
 .header_top{//стилизация header в изначальном положении
   position: absolute;
   top: 0;
@@ -40,7 +7,7 @@ body{
     .logo{
       padding: 45px 0;
     }
-    .navigation{
+    .nav{
       position: absolute;
       bottom: 10px;
       right: 100px;
@@ -53,7 +20,6 @@ body{
     }
   }
 }
-
 .header_fixed{//изменения в header,которые происзодят, когда он становится фиксированным
   background: $bg-color;
   position: fixed;
@@ -61,7 +27,7 @@ body{
   box-shadow: $shadow;
   top:0;
   transition: all 1s;
-  .navigation{
+  .nav{
     position: relative;
     right: 120px;
   }
@@ -72,21 +38,76 @@ body{
     display: none;
   }
 }
-
-
-
-.title{//блок для часто повторяющихся заголовоков разделов (можно использовать и для для других похожих зоголовков, переопределяя некоторые свойства)
-   width: 100%;
-   height: inherit;
-   text-align: center;
-   line-height: 1.5;
-  //padding: 20px 0;
-   @include font-title;
-}
-.page_start{//заголовок на первой странице немного отличается от остальных
-  .title_start {
-    padding-bottom: 100px;
+.page_start{//стартовая страница
+  background: linear-gradient(to top, #F0E68C, #E0FFFF);
+  height: 100vh;
+  padding: 0;
+  .wrap{
+    padding-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .title{
+    padding-bottom: 50px;
     @include font-title($main-color, $main-color, normal, bold, 50px, 20px);
+  }
+  .box-img{
+    width: 60%;
+    position: relative;
+    .box-img__img{
+      max-width: 80%;
+      box-sizing: border-box;
+      @include border;
+    }
+    .box-img__img:last-child{
+      position: absolute;
+      right: 0;
+      bottom: -30px;
+    }
+  }
+  .box-text{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include text;
+    .box-text__text{
+      margin-bottom: 40px;
+      width: 70%;
+    }
+    .box-text__sub-text{
+      text-transform: capitalize;
+      font-weight: bold;
+      width: 30%;
+      text-align: center;
+      margin-top: 10px;
+      color: $main-color;
+    }
+  }
+  .scroll-button{
+    text-align: center;
+    color: $main-color;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    font-style: italic;
+    animation: jump 2s linear infinite;
+    z-index: 5;
+    @keyframes jump {
+      from {transform:  translate(0, 0);}
+      to { transform: translate(0,+15px);}
+    }
+    .scroll-button__img{
+      margin: 10px 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    &:hover{
+      opacity: 0.5;
+    }
   }
 }
 
@@ -107,73 +128,15 @@ body{
         font-weight: bold;
         text-transform: uppercase;
         padding: 20px 0;
+        font-size: 24px;
       }
       .box-benefit__text{
-        color: $text-color;
-        line-height: 1;
+        @include text;
       }
     }
   }
 }
-.scroll-button{
-  text-align: center;
-  color: $main-color;
-  font-weight: bold;
-  font-size: 20px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  font-style: italic;
-  animation: jump 2s linear infinite;
-  z-index: 5;
-  .scroll-button__img{
-    margin: 10px 0;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-}
-@keyframes jump {
-  from {transform:  translate(0, 0);}
-  to { transform: translate(0,+15px);}
-}
-.box-img{
-  width: 60%;
-  position: relative;
-  .box-img__img{
-    max-width: 80%;
-    box-sizing: border-box;
-    box-shadow: $shadow;
-  }
-  .box-img__img:last-child{
-    position: absolute;
-    right: 0;
-    bottom: -30px;
-  }
-}
-.box-text{
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  .box-text__text{
-    color: $text-color;
-    margin-bottom: 30px;
-    line-height: 1;
-    width: 70%;
-  }
-  .box-text__sub-text{
-    text-transform: capitalize;
-    font-weight: bold;
-    width: 30%;
-    line-height: 1;
-    text-align: center;
-    margin-top: 10px;
-  }
-}
 .vertical-slider{
-  //padding: 50px 0;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -188,30 +151,19 @@ body{
       display: block;
       width: 10px;
       height: 10px;
-      border-radius: 50%;
-      box-shadow: $shadow;
+      @include border(50%);
       background-color: #eee;
     }
     .switch-vertical-slider__item.active{
       width: 20px;
       height: 20px;
     }
-    //.switch-vertical-slider__item:after {
-    //  overflow: hidden;
-    //  content: '';
-    //  width: 1px;
-    //  height: 100%;
-    //  border-left: 1px solid #eee;
-    //  position: absolute;
-    //  top: 0;
-    //  left: 50%;
-    //}
   }
   .content-vertical-slider{
     display: block;
     float: right;
     width: 95%;
-    height: $height-vertical-slider;
+    height: $height-slider;
     overflow: hidden !important;
     position: relative;
     .content-vertical-slider-item{
@@ -219,7 +171,7 @@ body{
       position: absolute;
       width: 90%;
       height: 100%;
-      top: $height-vertical-slider;//изначально первый слайд скрыт (показывается сразу при загрузке скрипта)
+      top: $height-slider;//изначально первый слайд скрыт (показывается сразу при загрузке скрипта)
     }
     .content-vertical-slider__img{
       max-width: 100%;
@@ -228,36 +180,7 @@ body{
     }
   }
 }
-
-//.media-block{
-//  display: grid;
-//  grid-template-rows: 1fr 1fr;
-//  grid-template-columns: 1fr 2fr;
-//  grid-gap: 1vw;
-//  .some-block {
-//    height: 200px;
-//    @include border;
-//    display: flex;
-//    flex-direction: column;
-//    align-items: center;
-//    justify-content: center;
-//  }
-//    .some-block__text {
-//      margin-bottom: 10px;
-//      color: $text-color;
-//    }
-//    .video-block {
-//      @include border;
-//      grid-row: 1 / 3;
-//      grid-column: 2 / 3;
-//      //grid-row: 1 /  2;
-//      // height: 400px;
-//    }
-//  }
-
-
 .horizontal-slider {
-  //padding: 50px 0;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -271,7 +194,6 @@ body{
     justify-content: space-around;
     align-items: center;
     position: relative;
-
     .switch-horizontal-slider__item {
       display: block;
       width: 10px;
@@ -282,21 +204,9 @@ body{
       margin: 0 40px;
       cursor: pointer;
     }
-
     .switch-horizontal-slider__item.active {
       width: 20px;
       height: 20px;
-    }
-
-    .switch-horizontal-slider__item:after {
-      overflow: hidden;
-      content: '';
-      width: 100%;
-      height: 1px;
-      border-top: 1px solid #eee;
-      position: absolute;
-      top: 50%;
-      right: 0;
     }
   }
     .switch-near {
@@ -308,7 +218,7 @@ body{
 
     .content-horizontal-slider {
       width: 90%;
-      height: $height-vertical-slider;
+      height: $height-slider;
       overflow: hidden !important;
       position: relative;
       display: block;
@@ -321,12 +231,9 @@ body{
         height: 100%;
         right: 100%; //в данном слайдере первый слайд показывается
       }
-
       .content-horizontal-slider__img {
         max-width: 100%;
         box-sizing: border-box;
-
-        // max-height: 100%;
       }
     }
 }
@@ -336,18 +243,24 @@ body{
   justify-content: space-between;
   padding: 25px 10px;
   @include border;
+  $amount-size: 50px;
   .price-box{
     width: 32%;
     @include border;
     display: flex;
+    padding: 15px 0;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 350px;
     .price-box__type{
       text-transform: uppercase;
       color: $text-color;
-      font-size: 25px;
+      font-size: ($amount-size/2);
+      margin-bottom: 20px;
+    }
+    .price-box__discount{
+      color: $text-color;
+      opacity: 0.5;
     }
     .amount{
       text-align: center;
@@ -355,15 +268,19 @@ body{
       font-size: 50px;
       .amount__currency, .amount__sub{
         color: $text-color;
-        font-size: 25px;
+        font-size: ($amount-size/2);
       }
     }
   }
   .price-comment{
     text-align: center;
-    color: $text-color;
+    padding: 30px 0;
+    @include text;
     .price-comment__text{
       margin-bottom: 10px;
+    }
+    .price-comment__text:last-child{
+      margin-bottom: 0;
     }
     .price-comment__text_through{
       text-decoration: line-through;
@@ -375,6 +292,8 @@ body{
   .price-box_active{
     border: none;
     box-shadow: none;
-    transform: translate(1.1);
+    transform: translate(1.2);
+    padding: 0;
   }
 }
+

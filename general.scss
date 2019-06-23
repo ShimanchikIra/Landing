@@ -16,6 +16,7 @@ $width-wrap: 70%;
 
 .page{
   background: $bg-color;
+  padding: 50px 0;
 }
 .wrap{
   width: $width-wrap;
@@ -32,7 +33,6 @@ $width-wrap: 70%;
     color: $color-title;
     font-weight: $weight-title;
     font-size: $size-title ;
-    text-transform: capitalize;
   }
   .title__text{
     color: $color-text;
@@ -54,8 +54,10 @@ $width-wrap: 70%;
   width: 100%;
   height: inherit;
   text-align: center;
+  text-transform: capitalize;
   line-height: 1;
   @include font-title;
+  margin-bottom: 30px;
 }
 .header{//общая стилизация header (в style будет переопределение некоторых свойств для header_top и header_fixed
   width: 100%;
@@ -111,10 +113,15 @@ $width-wrap: 70%;
     opacity: 0.6;
   }
 }
-//.button_circle{
-//  @include border (50%);
-//
-//}
+.button_circle{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  .button__img{
+    position: relative;
+    right: 10px;
+  }
+}
 .nav-button{//кнопка для отображания/скрытия меню в header
   width: 30px;
   height: 30px;

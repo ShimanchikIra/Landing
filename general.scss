@@ -12,12 +12,13 @@ $bg-color: #fff;
 $text-color: #949292;
 $title-color: #544444;
 $height-slider: 300px;
+$width-wrap: 70%;
 
 .page{
   background: $bg-color;
 }
 .wrap{
-  width: 70%;
+  width: $width-wrap;
   margin: 0 auto;
 }
 .logo{

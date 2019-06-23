@@ -261,10 +261,18 @@
       border: 1px solid #eee;
       border-radius: 50%;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      background-color: #eee; }
+      background-color: #eee;
+      cursor: pointer; }
     .vertical-slider .switch-vertical-slider .switch-vertical-slider__item.active {
       width: 20px;
       height: 20px; }
+    .vertical-slider .switch-vertical-slider:before {
+      position: absolute;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 1px;
+      border-right: 1px solid #eee; }
   .vertical-slider .content-vertical-slider {
     display: block;
     float: right;
@@ -308,6 +316,13 @@
     .horizontal-slider .switch-horizontal-slider .switch-horizontal-slider__item.active {
       width: 20px;
       height: 20px; }
+    .horizontal-slider .switch-horizontal-slider:before {
+      position: absolute;
+      content: '';
+      display: block;
+      height: 1px;
+      width: 100%;
+      border-top: 1px solid #eee; }
   .horizontal-slider .switch-near {
     width: 4%;
     text-align: center;
@@ -384,5 +399,50 @@
     box-shadow: none;
     transform: translate(1.2);
     padding: 0; }
+
+.page_end {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding-left: 10px; }
+  .page_end .help-block {
+    width: 15%; }
+  .page_end .help-block:first-child {
+    background: #eee; }
+  .page_end .wrap {
+    display: flex;
+    flex-wrap: nowrap; }
+    .page_end .wrap .footer {
+      width: 50%;
+      background: #eee;
+      padding-top: 30px; }
+      .page_end .wrap .footer .footer-content__text {
+        color: #544444;
+        font-size: 16px;
+        line-height: 1;
+        margin-bottom: 10px; }
+      .page_end .wrap .footer .footer-content__copyright {
+        color: #949292;
+        font-size: 16px;
+        line-height: 1; }
+    .page_end .wrap .feedback {
+      width: 50%;
+      padding: 30px; }
+      .page_end .wrap .feedback .title {
+        text-align: left;
+        line-height: 0.5; }
+        .page_end .wrap .feedback .title .title__main-title {
+          color: #544444;
+          font-weight: bold;
+          font-size: 16px;
+          text-transform: capitalize; }
+        .page_end .wrap .feedback .title .title__text {
+          color: #949292;
+          font-weight: bold;
+          font-size: 14px; }
+      .page_end .wrap .feedback .row {
+        margin-top: 20px; }
+      .page_end .wrap .feedback .material-icons.prefix.right {
+        right: 0; }
 
 /*# sourceMappingURL=style.css.map */

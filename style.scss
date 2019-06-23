@@ -20,7 +20,7 @@
     }
   }
 }
-.header_fixed{//изменения в header,которые происзодят, когда он становится фиксированным
+.header_fixed{//изменения в header,которые происходят, когда он становится фиксированным
   background: $bg-color;
   position: fixed;
   z-index: 100;
@@ -153,10 +153,19 @@
       height: 10px;
       @include border(50%);
       background-color: #eee;
+      cursor: pointer;
     }
     .switch-vertical-slider__item.active{
       width: 20px;
       height: 20px;
+    }
+    &:before{
+      position: absolute;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 1px;
+      border-right: 1px solid #eee;
     }
   }
   .content-vertical-slider{
@@ -186,7 +195,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
   .switch-horizontal-slider {
     width: 90%;
     display: flex;
@@ -207,6 +215,14 @@
     .switch-horizontal-slider__item.active {
       width: 20px;
       height: 20px;
+    }
+    &:before{
+      position: absolute;
+      content: '';
+      display: block;
+      height: 1px;
+      width: 100%;
+      border-top: 1px solid #eee;
     }
   }
     .switch-near {
@@ -296,4 +312,61 @@
     padding: 0;
   }
 }
+.page_end{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding-left: 10px;
+  .help-block{
+    width: ((100%-$width-wrap)/2);
+  }
+  .help-block:first-child{
+    background: #eee;
+  }
+  .wrap{
+    display: flex;
+    flex-wrap: nowrap;
+    .footer{
+      width: 50%;
+      background: #eee;
+      padding-top: 30px;
+      .footer-content__text{
+        @include text($title-color, 16px);
+        margin-bottom: 10px;
+      }
+      .footer-content__copyright{
+        @include text;
+      }
+    }
+    .feedback{
+      width: 50%;
+      padding: 30px;
+      .title{
+        text-align: left;
+        line-height: 0.5;
+        @include font-title($title-color, $text-color, bold, bold,16px,14px);
+      }
+      .row{
+        margin-top: 20px;
+      }
+      .material-icons.prefix.right {
+        right: 0;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

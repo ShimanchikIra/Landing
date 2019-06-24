@@ -1,14 +1,13 @@
 $(document).ready(function() {
     //изменение header по скроллу
-    let header = $(".header_top");
-    //let heightHeader = header.height(); // высота шапки
+    let header = $(".header_top");//высота изначального header
     $(window).scroll(function () {
         if ($(this).scrollTop() > header.height() && header.hasClass('header_top')) {
             header.removeClass('header_top').addClass('header_fixed');
         } else if ($(this).scrollTop() <= header.height() && header.hasClass('header_fixed')) {
             header.removeClass("header_fixed").addClass('header_top');
         }
-    });//scroll
+    });
 
     //отображение меню в header_top по нажатию на кнопку
     let navButton = $('.nav-button');//кнопка для скрытия/отображения меню в header на первой странице
@@ -31,209 +30,162 @@ $(document).ready(function() {
             'slow');
     });
 
-        // //вертикальный слайдер//переделать через children
+    let timeSlide=3000;//время переключения слайдов
+    // вертикальный слайдер
     let itemVerticalSlider = $('.content-vertical-slider-item');//элементы слайдера
     let heightVerticalSlider = itemVerticalSlider.height();//высота слайдера(то, наскольео нам надо менять расположение слайда для перелистываннния)
     let itemSwitchVerticalSlider = $('.switch-vertical-slider__item');//элементы переключателя слайдера
-    let timer = 0;
-    console.log(timer);
+    let timerVerticalSlider = 0;
     let indVerticalSlider = 0;//счетчик слайдера
-    console.log('pic_index=' + indVerticalSlider);
     //ставим слайлер  и переключатель в начальное положение
     itemVerticalSlider.eq(indVerticalSlider).css({
         top: 0
     });
     itemSwitchVerticalSlider.eq(indVerticalSlider).addClass('active');
+    startVerticalSlider();//запускаем переключение слайдера
 
-    startSlider();//запускаем переключение слайдера
-    function startSlider() {
-        if (timer > 0) { return; }
-            timer = setInterval(function () {
-                itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
+    function startVerticalSlider() {//переключение слайлов по тайсеру
+        if (timerVerticalSlider > 0) { return;}
+            timerVerticalSlider = setInterval(function () {
+                itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({//убираем предыдущий слайд
                     top: '-' + heightVerticalSlider + 'px',
                 });
-                if (indVerticalSlider < itemVerticalSlider.length - 1) {
+                if (indVerticalSlider < itemVerticalSlider.length - 1) {//переходим к слудуюшему слайду, если текущий был не последним
                     indVerticalSlider++;
-                    console.log('pic_index=' + indVerticalSlider);
-                } else {
+                } else {//переходим к первому слайду
                     indVerticalSlider = 0;
-                    console.log('pic_index=' + indVerticalSlider);
                 }
-                itemVerticalSlider.eq(indVerticalSlider).css({
+                itemVerticalSlider.eq(indVerticalSlider).css({//устанавливаем новый слайдер
                     top: heightVerticalSlider + 'px'
                 });
                 itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
                     top: "0px"
                 });
-
-                itemSwitchVerticalSlider.removeClass('active');
+                itemSwitchVerticalSlider.removeClass('active');//меняем положение переключатеоя
                 itemSwitchVerticalSlider.eq(indVerticalSlider).addClass('active');
 
-            }, 3000);
-        console.log(timer);
+            }, timeSlide);
         }
 
-    function stopSlider() {
-        clearInterval(timer);
-        timer = 0;
-        console.log(timer);
-    }
-
-    $('.switch-vertical-slider').hover(function () {
-        stopSlider();
+    $('.switch-vertical-slider').hover(function () {//при наведении на блок с переключатеоями слайдов таймер отстанавливается
+        (function() {
+            clearInterval(timerVerticalSlider);
+            timerVerticalSlider = 0;
+        })();
         }, function () {
-        startSlider();
+        startVerticalSlider();
         });
-    itemSwitchVerticalSlider.click(function () {//отслеживваем клики по переключателю
-             if (itemVerticalSlider.length === itemSwitchVerticalSlider.length) {//если количество точек не совпадает с количесвом слайдов, то не даем переключать слайды
-                console.log(indVerticalSlider, $(this).index());
-                if (indVerticalSlider !== $(this).index()) {
-                   // stopSlider();
+
+     itemSwitchVerticalSlider.click(function () {//отслеживваем клики по переключателю
+             if ((itemVerticalSlider.length === itemSwitchVerticalSlider.length) && (indVerticalSlider !== $(this).index())) {//если количество точек не совпадает с количесвом слайдов или слайдер находится в выбранном полодении , то не даем переключать слайды
                     itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
                         top: '-' + heightVerticalSlider + 'px'
                     });
-                    console.log('pic_index=' + indVerticalSlider);
                     indVerticalSlider = $(this).index();
                     itemVerticalSlider.eq(indVerticalSlider).css({
                         top: heightVerticalSlider + 'px'
                     });
                     itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({top: 0});
-                    console.log('pic_index=' + indVerticalSlider);
                     itemSwitchVerticalSlider.removeClass('active');
                     $(this).addClass('active');
-
-                    console.log('таймер остановлен');
-                   // setTimeout(startSlider, 8000);
-                    console.log('таймер вкд');
-                }
                  return false;
             } else {
-                console.log('Невозможно переключать слайдер так как разное количество точек и слайдов');
+                console.log('Невозможно переключать слайдер так как разное количество точек и слайдов или слайдер находится на выбранной позиции');
             }
         });
 
+     // горизонтальный слайдер
+    let itemHorizontalSlider = $('.content-horizontal-slider-item');//элементы слайдера
+    let widthHorizontalSlider = itemHorizontalSlider.width();//ширина слайдера(то, наскольео нам надо менять расположение слайда для перелистываннния)
+    let itemSwitchHorizontalSlider = $('.switch-horizontal-slider__item');//элементы переключателя слайдера
+    let timerHorizontalSlider = 0;//таймер для горизонтального слайдера
+    let indHorizontalSlider = 0;//счетчик слайдера
+    //ставим слайлер  и переключатель слайдов в начальное положение
+    itemHorizontalSlider.eq(indHorizontalSlider).css({
+      right: 0
+    });
+    itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
 
-
-
-// //горизонтальный слайдер
-let itemHorizontalSlider = $('.content-horizontal-slider-item');//элементы слайдера
-let widthHorizontalSlider = itemHorizontalSlider.width();//ширина слайдера(то, наскольео нам надо менять расположение слайда для перелистываннния)
-let itemSwitchHorizontalSlider = $('.switch-horizontal-slider__item');//элементы переключателя слайдера
-let timer2 = 0;
-console.log('width: ' + widthHorizontalSlider);
-let indHorizontalSlider = 0;//счетчик слайдера
-//console.log('pic_index=' + indHorizontalSlider);
-//ставим слайлер  и переключатель в начальное положение
-itemHorizontalSlider.eq(indHorizontalSlider).css({
-    right: 0
-});
-itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
-
-
-    itemSwitchHorizontalSlider.click(function () {//отслеживваем клики по переключателю (немного говых учлоыий)
-        if (itemHorizontalSlider.length === itemSwitchHorizontalSlider.length) {//если количество точек не совпадает с количесвом слайдов, то не даем переключать слайды
-            console.log(indHorizontalSlider, $(this).index());
-            if (indHorizontalSlider < $(this).index() ) {
-
-                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
-                    right: '-' + widthHorizontalSlider + 'px'
-                });
-                //console.log('pic_index=' + indVerticalSlider);
-                indHorizontalSlider = $(this).index();
-                itemHorizontalSlider.eq(indHorizontalSlider).css({
-                    right: widthHorizontalSlider + 'px'
-                });
-                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
-                //console.log('pic_index=' + indVerticalSlider);
-
-                //console.log('таймер остановлен');
-                //console.log('таймер вкд');
-            } else if (indHorizontalSlider > $(this).index() ) {
-                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
-                    right: widthHorizontalSlider + 'px'
-                });
-                //console.log('pic_index=' + indVerticalSlider);
-                indHorizontalSlider = $(this).index();
-                itemHorizontalSlider.eq(indHorizontalSlider).css({
-                    right: '-' + widthHorizontalSlider + 'px'
-                });
-                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
-                //console.log('pic_index=' + indVerticalSlider);
-
-
+    startHorizontalSlider();//запускаем переключение слайдера
+    function startHorizontalSlider() {
+        if (timerHorizontalSlider > 0) { return; }
+        timerHorizontalSlider = setInterval(function () {
+            itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({//убилаем переключ
+                right: '-' + widthHorizontalSlider + 'px'
+            });
+            if (indHorizontalSlider < itemHorizontalSlider.length - 1) {//переходим к слудуюшему слайду, если текущий был не последним
+                indHorizontalSlider++;
+            } else {//переходим к первому слайду, если текущий был последним
+                indHorizontalSlider = 0;
             }
+            itemHorizontalSlider.eq(indHorizontalSlider).css({//устаавливаем слайд
+                right: widthHorizontalSlider + 'px'
+            });
+            itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
+                right: "0px"
+            });
+            itemSwitchHorizontalSlider.removeClass('active');//убираем переключатель с текущее положение
+            itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');//ставим переключатель с текущее положение
+        }, timeSlide);
+    }
 
+    $('.switch-horizontal-slider, #next, #prev').hover(function () {//при наведении на блок с переключатеоями слайдов таймер отстанавливается
+        (function() {
+            clearInterval(timerHorizontalSlider);
+            timerHorizontalSlider = 0;
+        })();
+    }, function () {
+        startHorizontalSlider();
+    });
+
+    itemSwitchHorizontalSlider.click(function () {//отслеживваем клики по переключателю
+        if (itemHorizontalSlider.length === itemSwitchHorizontalSlider.length) {//если количество точек не совпадает с количесвом слайдов, то не даем переключать слайды
+            if (indHorizontalSlider < $(this).index() ) {//если слайд, на который мы хотим переключиться находится после текущего слайда, то листаем вправо
+                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
+                    right: '-' + widthHorizontalSlider + 'px'
+                });
+                indHorizontalSlider = $(this).index();//ставим слайдер в нужное положение
+                itemHorizontalSlider.eq(indHorizontalSlider).css({
+                    right: widthHorizontalSlider + 'px'
+                });
+                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
+            } else if (indHorizontalSlider > $(this).index() ) {//если слайд, на который мы хотим переключиться находится до текущего слайда, то листаем влево
+                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
+                    right: widthHorizontalSlider + 'px'
+                });
+                indHorizontalSlider = $(this).index();//ставим слайдер в нужное положение
+                itemHorizontalSlider.eq(indHorizontalSlider).css({
+                    right: '-' + widthHorizontalSlider + 'px'
+                });
+                itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
+            }
             itemSwitchHorizontalSlider.removeClass('active');
             $(this).addClass('active');
-            // stopSlider2();
-            // setTimeout(startSlider2, 8000);
             return false;
         } else {
             console.log('Невозможно переключать слайдер так как разное количество точек и слайдов');
         }
     });
 
-    startSlider2();//запускаем переключение слайдера
-    function startSlider2() {
-        if (timer2 > 0) { return; }
-        timer2 = setInterval(function () {
-            itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
-                right: '-' + widthHorizontalSlider + 'px'
-            });
-            if (indHorizontalSlider < itemHorizontalSlider.length - 1) {
-                indHorizontalSlider++;
-                //console.log('pic_index=' + indVerticalSlider);
-            } else {
-                indHorizontalSlider = 0;
-            }
-            itemHorizontalSlider.eq(indHorizontalSlider).css({
-                right: widthHorizontalSlider + 'px'
-            });
-            itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
-                right: "0px"
-            });
 
-            itemSwitchHorizontalSlider.removeClass('active');
-            itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
 
-        }, 3000);
-    }
-
-    function stopSlider2() {
-        clearInterval(timer2);
-        timer2 = 0;
-        console.log(timer2);
-    }
-
-    $('.switch-horizontal-slider').hover(function () {
-        stopSlider2();
-    }, function () {
-        startSlider2();
+    $('#next').click(function() {//Переключение на слудующий слайд
+        itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
+            right: '-' + widthHorizontalSlider + 'px'
+        });
+        if (indHorizontalSlider<itemHorizontalSlider.length-1) {
+            indHorizontalSlider++;
+        } else {
+            indHorizontalSlider=0;
+        }
+        itemHorizontalSlider.eq(indHorizontalSlider).css({
+            right: widthHorizontalSlider + 'px'
+        });
+        itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
+        itemSwitchHorizontalSlider.removeClass('active');
+        itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
     });
-function nextSlide() {
-    itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
-        right: '-' + widthHorizontalSlider + 'px'
-    });
-    if (indHorizontalSlider<itemHorizontalSlider.length-1) {
-        indHorizontalSlider++;
-    } else {
-        indHorizontalSlider=0;
-    }
-    //console.log('pic_index=' + indVerticalSlider);
-    itemHorizontalSlider.eq(indHorizontalSlider).css({
-        right: widthHorizontalSlider + 'px'
-    });
-    itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
-    itemSwitchHorizontalSlider.removeClass('active');
-    itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
-
-}
-    $('#next').click(function() {
-        stopSlider2();
-        nextSlide();
-        setTimeout(startSlider2, 8000);
-    });
-    function prevSlide() {
+    $('#prev').click(function() {//Переключение на предыдущий слайд
         itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
             right: widthHorizontalSlider + 'px'
         });
@@ -242,25 +194,17 @@ function nextSlide() {
         } else {
             indHorizontalSlider=itemHorizontalSlider.length-1;
         }
-        //console.log('pic_index=' + indVerticalSlider);
-        //indHorizontalSlider = $(this).index();
         itemHorizontalSlider.eq(indHorizontalSlider).css({
             right: '-' + widthHorizontalSlider + 'px'
         });
         itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
         itemSwitchHorizontalSlider.removeClass('active');
         itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
-    }
-    $('#prev').click(function() {
-        stopSlider2();
-        prevSlide();
-        setTimeout(startSlider2, 8000);
-
     });
 
-    //
-    let priceBox= $('.price-box');
-   priceBox.click(function () {
+    //клик по блоку с ценой
+    let priceBox= $('.price-box');//блоки с ценой
+    priceBox.click(function () {
         priceBox.removeClass('price-box_active');
         $(this).addClass('price-box_active');
     })

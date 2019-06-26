@@ -1,0 +1,168 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+$shadow: 0 0 10px rgba(0,0,0,0.5);
+$main-color: #000;
+$bg-color: #fff;
+$text-color: #949292;
+$title-color: #544444;
+$height-slider: 400px;
+$width-wrap: 70%;
+
+.page{
+  background: $bg-color;
+  padding: 50px 0;
+}
+.wrap{
+  width: $width-wrap;
+  margin: 0 auto;
+}
+.logo{
+  font-size: 25px;
+}
+@mixin font-title ($color-title: $title-color, $color-text: $main-color, $weight-title: normal, $weight-text: bold, $size-title: 30px, $size-text: 15px){
+  .title{
+    &__main-title{
+      color: $color-title;
+      font-weight: $weight-title;
+      font-size: $size-title ;
+    }
+    &__text{
+      color: $color-text;
+      font-weight: $weight-text;
+      font-size: $size-text ;
+    }
+  }
+}
+@mixin border ($border-radius: 5px){
+  border: 1px solid #eee;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+}
+@mixin text ($color: $text-color, $size: 16px){
+  color: $color;
+  font-size: $size;
+  line-height: 1;
+}
+.title{
+  width: 100%;
+  height: inherit;
+  text-align: center;
+  text-transform: capitalize;
+  line-height: 1;
+  @include font-title;
+  margin-bottom: 30px;
+}
+.header{
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav{
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    &__link{
+      color: $main-color;
+      &:hover{
+        opacity: 0.5;
+      }
+    }
+  }
+  .wrap-for-link{
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
+    .link-enter{
+      display: flex;
+      flex-wrap: nowrap;
+      &__img{
+        margin-right: 10px;
+      }
+      &__text{
+        color: $main-color;
+      }
+      &:hover{
+        opacity: 0.7;
+      }
+    }
+  }
+}
+.button{
+  text-align: center;
+  background-color: $bg-color;
+  color: $main-color;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  @include border;
+  padding: 10px 20px;
+  &:hover{
+    opacity: 0.6;
+  }
+}
+.button_circle{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  &__img{
+    position: relative;
+    right: 10px;
+  }
+}
+.nav-button{
+  width: 30px;
+  height: 30px;
+  background-color: $bg-color;
+  @include border(50%);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &_open{
+    position: relative;
+    .nav-button__center-line{
+      background: transparent;
+      &:before{
+        transform: rotate(45deg);
+        position: absolute;
+        top: 50%;
+      }
+      &:after{
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 50%;
+      }
+    }
+  }
+  &__center-line, &__center-line:before, &__center-line:after{
+    display: block;
+    height: 2px;
+    width: 20px;
+    background-color: $main-color;
+  }
+  &__center-line{
+    &:before{
+      transition: all 0.5s;
+      content: '';
+      position: relative;
+      bottom: 5px;
+    }
+    &:after{
+      transition: all 0.5s;
+      content: '';
+      position: relative;
+      top: 3px;//значение отличается от bottom у :before из-за разницы в положении на 2px (2px - высота линии)
+    }
+  }
+}

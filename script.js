@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    //изменение header по скроллу
-    let header = $(".header_top");//высота изначального header
+
+    let header = $(".header_top");
     $(window).scroll(function () {
         if ($(this).scrollTop() > header.height() && header.hasClass('header_top')) {
             header.removeClass('header_top').addClass('header_fixed');
@@ -9,9 +9,8 @@ $(document).ready(function() {
         }
     });
 
-    //отображение меню в header_top по нажатию на кнопку
-    let navButton = $('.nav-button');//кнопка для скрытия/отображения меню в header на первой странице
-    let hideMenu = $('.nav');//меню, которое необходимо скрытвать и показывать
+    let navButton = $('.nav-button');
+    let hideMenu = $('.nav');
     navButton.click(function () {
         $(this).toggleClass("nav-button_open");
         if ($(this).hasClass('nav-button_open')) {
@@ -30,44 +29,42 @@ $(document).ready(function() {
             'slow');
     });
 
-    let timeSlide=3000;//время переключения слайдов
-    // вертикальный слайдер
-    let itemVerticalSlider = $('.content-vertical-slider-item');//элементы слайдера
-    let heightVerticalSlider = itemVerticalSlider.height();//высота слайдера(то, наскольео нам надо менять расположение слайда для перелистываннния)
-    let itemSwitchVerticalSlider = $('.switch-vertical-slider__item');//элементы переключателя слайдера
+    let timeSlide=3000;
+    let itemVerticalSlider = $('.content-vertical-slider-item');
+    let heightVerticalSlider = itemVerticalSlider.height();
+    let itemSwitchVerticalSlider = $('.switch-vertical-slider__item');
     let timerVerticalSlider = 0;
-    let indVerticalSlider = 0;//счетчик слайдера
-    //ставим слайлер  и переключатель в начальное положение
+    let indVerticalSlider = 0;
     itemVerticalSlider.eq(indVerticalSlider).css({
         top: 0
     });
     itemSwitchVerticalSlider.eq(indVerticalSlider).addClass('active');
-    startVerticalSlider();//запускаем переключение слайдера
+    startVerticalSlider();
 
-    function startVerticalSlider() {//переключение слайлов по тайсеру
+    function startVerticalSlider() {
         if (timerVerticalSlider > 0) { return;}
             timerVerticalSlider = setInterval(function () {
-                itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({//убираем предыдущий слайд
+                itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
                     top: '-' + heightVerticalSlider + 'px',
                 });
-                if (indVerticalSlider < itemVerticalSlider.length - 1) {//переходим к слудуюшему слайду, если текущий был не последним
+                if (indVerticalSlider < itemVerticalSlider.length - 1) {
                     indVerticalSlider++;
-                } else {//переходим к первому слайду
+                } else {
                     indVerticalSlider = 0;
                 }
-                itemVerticalSlider.eq(indVerticalSlider).css({//устанавливаем новый слайдер
+                itemVerticalSlider.eq(indVerticalSlider).css({
                     top: heightVerticalSlider + 'px'
                 });
                 itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
                     top: "0px"
                 });
-                itemSwitchVerticalSlider.removeClass('active');//меняем положение переключатеоя
+                itemSwitchVerticalSlider.removeClass('active');
                 itemSwitchVerticalSlider.eq(indVerticalSlider).addClass('active');
 
             }, timeSlide);
         }
 
-    $('.switch-vertical-slider').hover(function () {//при наведении на блок с переключатеоями слайдов таймер отстанавливается
+    $('.switch-vertical-slider').hover(function () {
         (function() {
             clearInterval(timerVerticalSlider);
             timerVerticalSlider = 0;
@@ -76,8 +73,8 @@ $(document).ready(function() {
         startVerticalSlider();
         });
 
-     itemSwitchVerticalSlider.click(function () {//отслеживваем клики по переключателю
-             if ((itemVerticalSlider.length === itemSwitchVerticalSlider.length) && (indVerticalSlider !== $(this).index())) {//если количество точек не совпадает с количесвом слайдов или слайдер находится в выбранном полодении , то не даем переключать слайды
+     itemSwitchVerticalSlider.click(function () {
+             if ((itemVerticalSlider.length === itemSwitchVerticalSlider.length) && (indVerticalSlider !== $(this).index())) {
                     itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
                         top: '-' + heightVerticalSlider + 'px'
                     });
@@ -95,41 +92,40 @@ $(document).ready(function() {
         });
 
      // горизонтальный слайдер
-    let itemHorizontalSlider = $('.content-horizontal-slider-item');//элементы слайдера
-    let widthHorizontalSlider = itemHorizontalSlider.width();//ширина слайдера(то, наскольео нам надо менять расположение слайда для перелистываннния)
-    let itemSwitchHorizontalSlider = $('.switch-horizontal-slider__item');//элементы переключателя слайдера
-    let timerHorizontalSlider = 0;//таймер для горизонтального слайдера
-    let indHorizontalSlider = 0;//счетчик слайдера
-    //ставим слайлер  и переключатель слайдов в начальное положение
+    let itemHorizontalSlider = $('.content-horizontal-slider-item');
+    let widthHorizontalSlider = itemHorizontalSlider.width();
+    let itemSwitchHorizontalSlider = $('.switch-horizontal-slider__item');
+    let timerHorizontalSlider = 0;
+    let indHorizontalSlider = 0;
     itemHorizontalSlider.eq(indHorizontalSlider).css({
       right: 0
     });
     itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
 
-    startHorizontalSlider();//запускаем переключение слайдера
+    startHorizontalSlider();
     function startHorizontalSlider() {
         if (timerHorizontalSlider > 0) { return; }
         timerHorizontalSlider = setInterval(function () {
             itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({//убилаем переключ
                 right: '-' + widthHorizontalSlider + 'px'
             });
-            if (indHorizontalSlider < itemHorizontalSlider.length - 1) {//переходим к слудуюшему слайду, если текущий был не последним
+            if (indHorizontalSlider < itemHorizontalSlider.length - 1) {
                 indHorizontalSlider++;
-            } else {//переходим к первому слайду, если текущий был последним
+            } else {
                 indHorizontalSlider = 0;
             }
-            itemHorizontalSlider.eq(indHorizontalSlider).css({//устаавливаем слайд
+            itemHorizontalSlider.eq(indHorizontalSlider).css({
                 right: widthHorizontalSlider + 'px'
             });
             itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
                 right: "0px"
             });
-            itemSwitchHorizontalSlider.removeClass('active');//убираем переключатель с текущее положение
-            itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');//ставим переключатель с текущее положение
+            itemSwitchHorizontalSlider.removeClass('active');
+            itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
         }, timeSlide);
     }
 
-    $('.switch-horizontal-slider, #next, #prev').hover(function () {//при наведении на блок с переключатеоями слайдов таймер отстанавливается
+    $('.switch-horizontal-slider, #next, #prev').hover(function () {
         (function() {
             clearInterval(timerHorizontalSlider);
             timerHorizontalSlider = 0;
@@ -138,9 +134,9 @@ $(document).ready(function() {
         startHorizontalSlider();
     });
 
-    itemSwitchHorizontalSlider.click(function () {//отслеживваем клики по переключателю
-        if (itemHorizontalSlider.length === itemSwitchHorizontalSlider.length) {//если количество точек не совпадает с количесвом слайдов, то не даем переключать слайды
-            if (indHorizontalSlider < $(this).index() ) {//если слайд, на который мы хотим переключиться находится после текущего слайда, то листаем вправо
+    itemSwitchHorizontalSlider.click(function () {
+        if (itemHorizontalSlider.length === itemSwitchHorizontalSlider.length) {
+            if (indHorizontalSlider < $(this).index() ) {
                 itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
                     right: '-' + widthHorizontalSlider + 'px'
                 });
@@ -149,7 +145,7 @@ $(document).ready(function() {
                     right: widthHorizontalSlider + 'px'
                 });
                 itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({right: 0});
-            } else if (indHorizontalSlider > $(this).index() ) {//если слайд, на который мы хотим переключиться находится до текущего слайда, то листаем влево
+            } else if (indHorizontalSlider > $(this).index() ) {
                 itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
                     right: widthHorizontalSlider + 'px'
                 });
@@ -169,7 +165,7 @@ $(document).ready(function() {
 
 
 
-    $('#next').click(function() {//Переключение на слудующий слайд
+    $('#next').click(function() {
         itemHorizontalSlider.eq(indHorizontalSlider).stop(true, false).animate({
             right: '-' + widthHorizontalSlider + 'px'
         });
@@ -202,8 +198,7 @@ $(document).ready(function() {
         itemSwitchHorizontalSlider.eq(indHorizontalSlider).addClass('active');
     });
 
-    //клик по блоку с ценой
-    let priceBox= $('.price-box');//блоки с ценой
+    let priceBox= $('.price-box');
     priceBox.click(function () {
         priceBox.removeClass('price-box_active');
         $(this).addClass('price-box_active');

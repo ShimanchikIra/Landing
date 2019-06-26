@@ -1,5 +1,5 @@
-@import "general";//подключение scss файла, к котором хранятся переменные, миксины и общая стилизация блоков, которые повторяются
-.header_top{//стилизация header в изначальном положении
+@import "general";
+.header_top{
   position: absolute;
   top: 0;
   .wrap{
@@ -20,7 +20,7 @@
     }
   }
 }
-.header_fixed{//изменения в header,которые происходят, когда он становится фиксированным
+.header_fixed{
   background: $bg-color;
   position: fixed;
   z-index: 100;
@@ -34,11 +34,11 @@
   .logo{
     padding: 25px 0;
   }
-  .nav-button{//в этом header нет этой кнопки
+  .nav-button{
     display: none;
   }
 }
-.page_start{//стартовая страница
+.page_start{
   background: linear-gradient(to top, #F0E68C, #E0FFFF);
   height: 100vh;
   padding: 0;
@@ -48,22 +48,21 @@
     flex-wrap: wrap;
   }
   .title{
-    //padding-bottom: 50px;
     margin-bottom: 40px;
     @include font-title($main-color, $main-color, normal, bold, 50px, 20px);
   }
   .box-img{
     width: 60%;
     position: relative;
-    .box-img__img{
+    &__img{
       max-width: 80%;
       box-sizing: border-box;
       @include border;
-    }
-    .box-img__img:last-child{
-      position: absolute;
-      right: 0;
-      bottom: -30px;
+      &:last-child{
+        position: absolute;
+        right: 0;
+        bottom: -30px;
+      }
     }
   }
   .box-text{
@@ -73,11 +72,11 @@
     justify-content: center;
     align-items: center;
     @include text;
-    .box-text__text{
+    &__text{
       margin-bottom: 40px;
       width: 70%;
     }
-    .box-text__sub-text{
+    &__sub-text{
       text-transform: capitalize;
       font-weight: bold;
       width: 30%;
@@ -101,7 +100,7 @@
       from {transform:  translate(0, 0);}
       to { transform: translate(0,+15px);}
     }
-    .scroll-button__img{
+    &__img{
       margin: 10px 0;
       max-width: 100%;
       box-sizing: border-box;
@@ -114,24 +113,24 @@
 
 .benefits{
   width: 100%;
-  .benefits-container {
+  &-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
     .box-benefit{
       width: 20%;
       padding: 30px 0;
-      .box-benefit__img{
+      &__img{
         max-width: 100%;
         box-sizing: border-box;
       }
-      .box-benefit__title{
+      &__title{
         font-weight: bold;
         text-transform: uppercase;
         padding: 10px 0;
         font-size: 18px;
       }
-      .box-benefit__text{
+      &__text{
         @include text;
       }
     }
@@ -149,7 +148,7 @@
     justify-content: space-around;
     align-items: center;
     position: relative;
-    .switch-vertical-slider__item{
+    &__item{
       display: block;
       width: 10px;
       height: 10px;
@@ -157,7 +156,7 @@
       background-color: #eee;
       cursor: pointer;
     }
-    .switch-vertical-slider__item.active{
+    &__item.active{
       width: 20px;
       height: 20px;
     }
@@ -175,19 +174,19 @@
     float: right;
     width: 95%;
     height: $height-slider;
-    overflow: hidden !important;
+    overflow: hidden;
     position: relative;
-    .content-vertical-slider-item{
+    &-item{
       display: block;
       position: absolute;
       width: 90%;
       height: 100%;
-      top: $height-slider;//изначально первый слайд скрыт (показывается сразу при загрузке скрипта)
-    }
-    .content-vertical-slider__img{
-      max-width: 100%;
-      box-sizing: border-box;
-      max-height: 100%;
+      top: $height-slider;
+      &__img{
+        max-width: 100%;
+        box-sizing: border-box;
+        max-height: 100%;
+      }
     }
   }
 }
@@ -204,17 +203,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-    .some-block__text {
+    &__text {
       margin-bottom: 10px;
       color: $text-color;
     }
-    .some-bigger-block {
+  }
+  .some-bigger-block {
       @include border;
       grid-row: 1 / 3;
-      //text-align: center;
       grid-column: 2 / 3;
-      .video-block__img{
+      &__img{
         width: 100%;
         max-height: 90%;
         box-sizing: border-box;
@@ -234,7 +232,7 @@
     justify-content: space-around;
     align-items: center;
     position: relative;
-    .switch-horizontal-slider__item {
+    &__item {
       display: block;
       width: 10px;
       height: 10px;
@@ -243,10 +241,10 @@
       background-color: #eee;
       margin: 0 40px;
       cursor: pointer;
-    }
-    .switch-horizontal-slider__item.active {
-      width: 20px;
-      height: 20px;
+      &.active {
+        width: 20px;
+        height: 20px;
+      }
     }
     &:before{
       position: absolute;
@@ -263,25 +261,23 @@
       font-size: 35px;
       cursor: pointer;
     }
-
     .content-horizontal-slider {
       width: 90%;
       height: $height-slider;
-      overflow: hidden !important;
+      overflow: hidden;
       position: relative;
       display: block;
       @include border;
-
-      .content-horizontal-slider-item {
+      &-item {
         position: absolute;
         width: 100%;
         top: 0;
         height: 100%;
-        right: 100%; //в данном слайдере первый слайд показывается
-      }
-      .content-horizontal-slider__img {
-        max-width: 100%;
-        box-sizing: border-box;
+        right: 100%;
+        &__img {
+          max-width: 100%;
+          box-sizing: border-box;
+        }
       }
     }
 }
@@ -302,13 +298,19 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      .price-box__type{
+      &_active{
+        border: none;
+        box-shadow: none;
+        transform: translate(1.2);
+        padding: 0;
+      }
+      &__type{
         text-transform: uppercase;
         color: $text-color;
         font-size: ($amount-size/2);
         margin-bottom: 20px;
       }
-      .price-box__discount{
+      &__discount{
         color: $text-color;
         opacity: 0.5;
       }
@@ -316,7 +318,7 @@
         text-align: center;
         font-weight: bold;
         font-size: 50px;
-        .amount__currency, .amount__sub{
+        &__currency{
           color: $text-color;
           font-size: ($amount-size/2);
         }
@@ -326,28 +328,21 @@
       text-align: center;
       padding: 30px 0;
       @include text;
-      .price-comment__text{
+      &__text{
         margin-bottom: 10px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+        &_through{
+          text-decoration: line-through;
+        }
+        &_underline{
+          text-decoration: underline;
+        }
       }
-      .price-comment__text:last-child{
-        margin-bottom: 0;
-      }
-      .price-comment__text_through{
-        text-decoration: line-through;
-      }
-      .price-comment__text_underline{
-        text-decoration: underline;
-      }
-    }
-    .price-box_active{
-      border: none;
-      box-shadow: none;
-      transform: translate(1.2);
-      padding: 0;
     }
   }
 }
-
 .page_end{
   display: flex;
   flex-wrap: nowrap;
@@ -355,9 +350,9 @@
   padding-left: 10px;
   .help-block{
     width: ((100%-$width-wrap)/2);
-  }
-  .help-block:first-child{
-    background: #eee;
+    &:first-child{
+      background: #eee;
+    }
   }
   .wrap{
     display: flex;
@@ -366,12 +361,14 @@
       width: 50%;
       background: #eee;
       padding-top: 30px;
-      .footer-content__text{
-        @include text($title-color, 16px);
-        margin-bottom: 10px;
-      }
-      .footer-content__copyright{
-        @include text;
+      &-content{
+        &__text{
+          @include text($title-color, 16px);
+          margin-bottom: 10px;
+        }
+        &__copyright{
+          @include text;
+        }
       }
     }
     .feedback{

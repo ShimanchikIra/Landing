@@ -286,7 +286,7 @@
     display: block;
     float: right;
     width: 95%;
-    height: 400px;
+    height: 300px;
     overflow: hidden;
     position: relative; }
     .vertical-slider .content-vertical-slider-item {
@@ -294,7 +294,7 @@
       position: absolute;
       width: 90%;
       height: 100%;
-      top: 400px; }
+      top: 300px; }
       .vertical-slider .content-vertical-slider-item__img {
         max-width: 100%;
         box-sizing: border-box;
@@ -368,7 +368,7 @@
     cursor: pointer; }
   .horizontal-slider .content-horizontal-slider {
     width: 90%;
-    height: 400px;
+    height: 300px;
     overflow: hidden;
     position: relative;
     display: block;

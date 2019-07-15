@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    const speedAnimation='slow';
     let header = $(".header_top");
     $(window).scroll(function () {
         if ($(this).scrollTop() > header.height() && header.hasClass('header_top')) {
@@ -14,19 +14,18 @@ $(document).ready(function() {
     navButton.click(function () {
         $(this).toggleClass("nav-button_open");
         if ($(this).hasClass('nav-button_open')) {
-            hideMenu.fadeTo('slow', 1);
+            hideMenu.fadeTo(speedAnimation, 1);
         } else {
-            hideMenu.fadeTo('slow', 0);
+            hideMenu.fadeTo(speedAnimation, 0);
         }
     });
 
-    //scroll на вторую страницу по размеру первой стрницы
     let heightPageStart = $(".page_start").height();
     $(".scroll-button").click(function () {
         $('html,body').animate({
                 scrollTop: heightPageStart
             },
-            'slow');
+            speedAnimation);
     });
 
     let timeSlide=3000;
@@ -45,7 +44,7 @@ $(document).ready(function() {
         if (timerVerticalSlider > 0) { return;}
             timerVerticalSlider = setInterval(function () {
                 itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
-                    top: '-' + heightVerticalSlider + 'px',
+                    top: `-${heightVerticalSlider}px`
                 });
                 if (indVerticalSlider < itemVerticalSlider.length - 1) {
                     indVerticalSlider++;
@@ -53,7 +52,7 @@ $(document).ready(function() {
                     indVerticalSlider = 0;
                 }
                 itemVerticalSlider.eq(indVerticalSlider).css({
-                    top: heightVerticalSlider + 'px'
+                    top: `${heightVerticalSlider}px`
                 });
                 itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
                     top: "0px"
@@ -76,11 +75,11 @@ $(document).ready(function() {
      itemSwitchVerticalSlider.click(function () {
              if ((itemVerticalSlider.length === itemSwitchVerticalSlider.length) && (indVerticalSlider !== $(this).index())) {
                     itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({
-                        top: '-' + heightVerticalSlider + 'px'
+                        top: `-${heightVerticalSlider}px`
                     });
                     indVerticalSlider = $(this).index();
                     itemVerticalSlider.eq(indVerticalSlider).css({
-                        top: heightVerticalSlider + 'px'
+                        top: `${heightVerticalSlider}px`
                     });
                     itemVerticalSlider.eq(indVerticalSlider).stop(true, false).animate({top: 0});
                     itemSwitchVerticalSlider.removeClass('active');
@@ -91,7 +90,6 @@ $(document).ready(function() {
             }
         });
 
-     // горизонтальный слайдер
     let itemHorizontalSlider = $('.content-horizontal-slider-item');
     let widthHorizontalSlider = itemHorizontalSlider.width();
     let itemSwitchHorizontalSlider = $('.switch-horizontal-slider__item');

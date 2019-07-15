@@ -1,10 +1,6 @@
 # Landing
-Верстка landing page c использованием Sass(SCSS), Jquery, Revealator, Materialize
+Landing page using Sass(SCSS), Jquery, Revealator, Materialize
 
-Данный сайт не pixel-perfect, неадаптивный и неотзывчивый (наиболее удачно смотрится при ширине экрана от 1150px)
-Использован препроцессор SaSS(CSCC).
-В файле general.scss находятся переменные, миксины, стилизация часто повторяющихся блоков (кнопки, заголовки и т.д.),
-в файле style.scss находится вся стилизация index.html.
-С помощью Materialize реализована только форма обратной связи.
-Всплытие блоков при первом отображении реализовано через плагин Revealator (revealator-slideup (анимация снизу-вверх) revealator-duration9 (длительность) revealator-once (только при первом отображении))
+This landing is not pixel-perfect, non-adaptive and non-responsive
 
+![Result](https://github.com/ShimanchikIra/Landing/blob/master/resultVideo.mp4)
